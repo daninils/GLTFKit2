@@ -13,7 +13,7 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(name: "GLTFKit2",
-                      url: "https://github.com/warrenm/GLTFKit2/releases/download/0.5.4/GLTFKit2.xcframework.zip",
-                      checksum: "db39145e7d58f1d617e995f5566c8bef2f44b785299d7a3259d6fa5a66e083d8")
+                      url: "https://github.com/daninils/GLTFKit2/releases/download/0.5.4/GLTFKit2.xcframework.zip",
+                      checksum: "f9779f988bc9fb2f508f283c4be8ee32cc867273791328bd4b326c1903fd427f")
     ]
 )
