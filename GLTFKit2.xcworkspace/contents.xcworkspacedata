@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:GLTFBoneDirectionExample/GLTFBoneDirectionExample.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:GLTFKit2/GLTFKit2.xcodeproj">
    </FileRef>
    <FileRef
