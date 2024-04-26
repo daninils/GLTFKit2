@@ -27,6 +27,7 @@
 		83BEF9D825CF3240005DFE80 /* GLTFModelIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BEF9D625CF3240005DFE80 /* GLTFModelIO.m */; };
 		83DA575726DEEAA9007B440E /* GLTFLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 83DA575526DEEAA9007B440E /* GLTFLogging.h */; };
 		83DB5F512992BA9800B0190E /* GLTFRealityKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB5F502992BA9800B0190E /* GLTFRealityKit.swift */; };
+		A134DA642BDBA22800FDAFBB /* head.glb in Resources */ = {isa = PBXBuildFile; fileRef = A134DA622BDBA22800FDAFBB /* head.glb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		83C1BC9C25C3EABF003A485D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		83DA575526DEEAA9007B440E /* GLTFLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLTFLogging.h; sourceTree = "<group>"; };
 		83DB5F502992BA9800B0190E /* GLTFRealityKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTFRealityKit.swift; sourceTree = "<group>"; };
+		A134DA622BDBA22800FDAFBB /* head.glb */ = {isa = PBXFileReference; lastKnownFileType = file; path = head.glb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		8368059C277D3F6C00F3222A /* deps */ = {
 			isa = PBXGroup;
 			children = (
+				A134DA632BDBA22800FDAFBB /* Resources */,
 				83244B6E2ABA8C0E00ECA381 /* libktx */,
 				8368059D277D3F6C00F3222A /* cgltf */,
 			);
@@ -143,6 +146,14 @@
 				836805A1277D3F6C00F3222A /* cgltf.h */,
 			);
 			path = cgltf;
+			sourceTree = "<group>";
+		};
+		A134DA632BDBA22800FDAFBB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A134DA622BDBA22800FDAFBB /* head.glb */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A134DA642BDBA22800FDAFBB /* head.glb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

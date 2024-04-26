@@ -929,6 +929,24 @@ static float GLTFLuminanceFromRGBA(simd_float4 rgba) {
         }
     }
 
+    GLTFAsset *headAsset = [self getHeadAsset];
+    GLTFNode *headSkinNode;
+    for (GLTFNode *headNode in headAsset.nodes) {
+        if (headNode.skin) {
+            headSkinNode = headNode;
+            break;
+        }
+    }
+
+    NSMutableDictionary<NSUUID *, SCNNode *> *headNodesForIdentifiers = [NSMutableDictionary dictionary];
+    for (GLTFNode *headNode in headAsset.nodes) {
+        SCNNode *headScnNode = [SCNNode node];
+        headScnNode.name = headNode.name;
+        headScnNode.simdTransform = headNode.matrix;
+        headNodesForIdentifiers[headNode.identifier] = headScnNode;
+    }
+
+
     for (GLTFNode *node in self.asset.nodes) {
         SCNNode *scnNode = nodesForIdentifiers[node.identifier];
 
@@ -1025,12 +1043,20 @@ static float GLTFLuminanceFromRGBA(simd_float4 rgba) {
         }
 
         if (node.skin) {
+            GLTFNode *skinNode;
+            if ([self.asset.url.lastPathComponent isEqualToString:@"head.glb"]) {
+                skinNode = node;
+                headNodesForIdentifiers = nodesForIdentifiers;
+            } else {
+                skinNode = headSkinNode;
+            }
+
             NSMutableArray *bones = [NSMutableArray array];
-            for (GLTFNode *jointNode in node.skin.joints) {
-                SCNNode *bone = nodesForIdentifiers[jointNode.identifier];
+            for (GLTFNode *jointNode in skinNode.skin.joints) {
+                SCNNode *bone = headNodesForIdentifiers[jointNode.identifier];
                 [bones addObject:bone];
             }
-            NSArray *ibmValues = GLTFSCNMatrix4ArrayFromAccessor(node.skin.inverseBindMatrices);
+            NSArray *ibmValues = GLTFSCNMatrix4ArrayFromAccessor(skinNode.skin.inverseBindMatrices);
             for (int i = 0; i < geometryNodes.count; ++i) {
                 SCNNode *skinnedNode = geometryNodes[i];
                 GLTFPrimitive *sourcePrimitive = node.mesh.primitives[i];
@@ -1051,8 +1077,8 @@ static float GLTFLuminanceFromRGBA(simd_float4 rgba) {
                                                 boneInverseBindTransforms:ibmValues
                                                               boneWeights:boneWeights
                                                               boneIndices:boneIndices];
-                if (node.skin.skeleton) {
-                    skinner.skeleton = nodesForIdentifiers[node.skin.skeleton.identifier];
+                if (skinNode.skin.skeleton) {
+                    skinner.skeleton = headNodesForIdentifiers[skinNode.skin.skeleton.identifier];
                 }
                 skinnedNode.skinner = skinner;
             }
@@ -1213,6 +1239,14 @@ static float GLTFLuminanceFromRGBA(simd_float4 rgba) {
     }
 
     [_materialPropertyContentsCache removeAllObjects];
+}
+
+- (GLTFAsset*) getHeadAsset {
+    NSError *error;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"head" ofType:@"glb"];
+    NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
+    GLTFAsset *headAsset = [GLTFAsset assetWithURL:url options:@{} error:&error];
+    return headAsset;
 }
 
 @end
