@@ -5,8 +5,7 @@ import PackageDescription
 let package = Package(
     name: "GLTFKit2",
     platforms: [
-        .macOS("11.0"), .macCatalyst("14.0"), .iOS("12.1"), .tvOS("12.1")
-        // Note: visionOS("1.0") is also supported, but we can't require Swift tools version 5.9 yet.
+        .iOS("12.1")
     ],
     products: [
         .library(name: "GLTFKit2",
@@ -14,7 +13,7 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(name: "GLTFKit2",
-                      url: "https://github.com/warrenm/GLTFKit2/releases/download/0.5.9/GLTFKit2.xcframework.zip",
-                      checksum:"e7e66a5066ad36e325c9f80666c787f014d787afb57432a5048591963ac809ad")
+                      url: "https://github.com/daninils/GLTFKit2/releases/download/0.5.9/GLTFKit2.xcframework.zip",
+                      checksum:"56f538ae7a7c08f78f8726edaa3600b1ca6a5ebc5b4b07330ae6ba13134059ee")
     ]
 )

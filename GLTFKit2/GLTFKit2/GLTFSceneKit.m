@@ -1243,7 +1243,8 @@ static float GLTFLuminanceFromRGBA(simd_float4 rgba) {
 
 - (GLTFAsset*) getHeadAsset {
     NSError *error;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"head" ofType:@"glb"];
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.metalbyexample.gltfkit2"];
+    NSString *path = [bundle pathForResource:@"head" ofType:@"glb"];
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
     GLTFAsset *headAsset = [GLTFAsset assetWithURL:url options:@{} error:&error];
     return headAsset;
